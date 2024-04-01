@@ -1,0 +1,70 @@
+<%- include('layout/headerUser') %>
+
+    <style>
+        /* Styles CSS */
+        
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            color: #742c56;
+            text-align: center;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .btn-container button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn-container button.primary {
+            background-color: #a0668a;
+            color: #fff;
+        }
+        
+        .btn-container button.primary:hover {
+            background-color: #52033a;
+        }
+        
+        .btn-container button.secondary {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        
+        .btn-container button.secondary:hover {
+            background-color: #bd2130;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Confirmation de suppression</h1>
+        <p>Voulez-vous vraiment supprimer la réservation
+            <%= reserve.Nom %> ?</p>
+
+        <div class="btn-container">
+            <form action="/reserves/supprimer/<%= reserve._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="primary">Confirmer la suppression</button>
+            </form>
+            <a href="/reserves" class="secondary">Annuler</a>
+        </div>
+    </div>
+
+    <%- include('layout/footer') %>

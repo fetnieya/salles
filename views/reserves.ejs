@@ -1,0 +1,125 @@
+<%- include ('layout/headerUser') %>
+
+    <style>
+        /* Styles CSS */
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #e4dce0;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #ceacbd;
+            color: #fff;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e2e2e2;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .actions a {
+            margin-right: 10px;
+            color: #a17e8e;
+            transition: color 0.3s ease-in-out;
+            /* Transition pour le changement de couleur au survol */
+        }
+        
+        .actions a:hover {
+            color: #b30086;
+            /* Couleur au survol */
+        }
+    </style>
+
+
+    <% if (message) { %>
+        <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+            <strong><%= message.message %></strong>
+        </div>
+        <% } %>
+
+            <h1>Liste de mes reserves</h1>
+            <table class="table-reserves s">
+                <thead>
+                    <tr>
+                        <th>Nom salle</th>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>E-mail</th>
+                        <th>Date réservation</th>
+                        <th>Heure de début</th>
+                        <th>Heure de fin</th>
+                        <th>NB.Personne</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% reserves.forEach(reserv => { %>
+                        <tr>
+                            <td>
+                                <%= reserv.Id %>
+                            </td>
+                            <td>
+                                <%= reserv.Nom %>
+                            </td>
+                            <td>
+                                <%= reserv.Capacite %>
+                            </td>
+                            <td>
+                                <%= reserv.Equipments %>
+                            </td>
+                            <td>
+                                <% reserv.Disponibilites.forEach(date => { %>
+                                    <%= date.toLocaleDateString() %><br>
+                                        <% }) %>
+                            </td>
+                            <td>
+                                <%= reserv.heure_debut %>
+                            </td>
+                            <td>
+                                <%= reserv.heure_fin %>
+                            </td>
+                            <td>
+                                <%= reserv.Tarif %>
+                            </td>
+                            <td class="action-icons">
+                                <a href="/modifier-reserv/<%= reserv._id %>"><i class="fas fa-edit" title="Modifier"></i></a>
+                                <a href="/reserves/supprimer/<%= reserv._id %>"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+
+            <%- include('layout/footer') %>

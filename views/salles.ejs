@@ -1,0 +1,106 @@
+<%- include('layout/header') %>
+
+<style>
+  /* Styles CSS */
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid #e4dce0;
+    text-align: center;
+  }
+
+  th {
+    background-color: #ceacbd;
+    color: #fff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #e2e2e2;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .actions a {
+    margin-right: 10px;
+    color: #a17e8e;
+    transition: color 0.3s ease-in-out; /* Transition pour le changement de couleur au survol */
+  }
+
+  .actions a:hover {
+    color: #b30086; /* Couleur au survol */
+  }
+</style>
+
+<div class="container">
+  <h1>Liste des salles</h1>
+  <table>
+    <thead>
+      <tr>
+        
+        <th>Nom</th>
+        <th>Capacité</th>
+        <th>Équipements</th>
+        <th>Date de début</th>
+        <th>Heure de début</th>
+        <th>Date de fin</th>
+        <th>Heure de fin</th>
+        <th>Tarif</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody>
+        <% salles.forEach(function(salle) { %>
+          <tr>
+            <td><%= salle.Nom %></td>
+            <td><%= salle.Capacite %></td>
+            <td><%= salle.Equipments.join(', ') %></td>
+            <% if (salle.Disponibilites && salle.Disponibilites.length > 0) { %>
+              <td><%= salle.Disponibilites[0].dateDebut ? salle.Disponibilites[0].dateDebut.toDateString() : '' %></td>
+              <td><%= salle.Disponibilites[0].heureDebut %></td>
+              <td><%= salle.Disponibilites[0].dateFin ? salle.Disponibilites[0].dateFin.toDateString() : '' %></td>
+              <td><%= salle.Disponibilites[0].heureFin %></td>
+            <% } else { %>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+            <% } %>
+            <td><%= salle.Tarif %></td>
+            <td class="actions">
+              <a href="/modifier/<%= salle._id %>"><i class="fas fa-edit"></i></a>
+              <a href="/salle/supprimer/<%= salle._id %>"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+      
+  </table>
+</div>
+
+<%- include('layout/footer') %>

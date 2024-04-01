@@ -1,0 +1,81 @@
+<style>
+    
+    
+
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #742c56;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    background-color: #e689c7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #440541;
+  }
+</style>
+
+<div class="container">
+  <h1>Modifier la salle <%= salle.Nom %></h1>
+  <form action="/maj/<%= salle._id %>" method="POST">
+    <label for="Nom">Nom :</label>
+    <input type="text" id="Nom" name="Nom" value="<%= salle.Nom %>">
+
+    <label for="Capacite">Capacité :</label>
+    <input type="number" id="Capacite" name="Capacite" value="<%= salle.Capacite %>">
+
+    <label for="Equipments">Équipements (séparés par des virgules) :</label>
+    <input type="text" id="Equipments" name="Equipments" value="<%= salle.Equipments.join(', ') %>">
+
+    <label for="DateDebut">Date de début :</label>
+    <input type="date" id="DateDebut" name="DateDebut" value="<%= salle.Disponibilites[0].dateDebut.toISOString().split('T')[0] %>">
+
+    <label for="HeureDebut">Heure de début :</label>
+    <input type="time" id="HeureDebut" name="HeureDebut" value="<%= salle.Disponibilites[0].heureDebut %>">
+
+    <label for="DateFin">Date de fin :</label>
+    <input type="date" id="DateFin" name="DateFin" value="<%= salle.Disponibilites[0].dateFin.toISOString().split('T')[0] %>">
+
+    <label for="HeureFin">Heure de fin :</label>
+    <input type="time" id="HeureFin" name="HeureFin" value="<%= salle.Disponibilites[0].heureFin %>">
+
+    <label for="Tarif">Tarif :</label>
+    <input type="number" id="Tarif" name="Tarif" value="<%= salle.Tarif %>">
+
+    <button type="submit">Modifier</button>
+  </form>
+</div>
+<%- include('layout/footer') %>

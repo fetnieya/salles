@@ -1,0 +1,62 @@
+
+  <style>
+    /* Styles CSS */
+   
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #742c56;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label, input, button {
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #74576f;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #6b0f5c;
+    }
+    p {
+      text-align: center;
+    }
+    a {
+      color: #70045e;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Register</h1>
+    <% if (message) { %>
+      <p><%= message %></p>
+    <% } %>
+    <form action="/register" method="POST">
+      
+
+      <label for="Email">Email:</label>
+      <input type="Email" id="Email" name="Email" required>
+      <label for="password">Mot de passe:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">S'inscrire</button>
+    </form>
+    <p>Vous avez déjà un compte ? <a href="/login">Connexion</a></p>
+  </div>
+

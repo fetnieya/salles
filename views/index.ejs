@@ -1,0 +1,82 @@
+<%- include ('layout/headerUser') %>
+
+    <div class="container">
+        <div class="row">
+            <style>
+                /* Style for the card container */
+                
+                .card {
+                    width: 18rem;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+                /* Style for the card image */
+                
+                .card-img-top {
+                    width: 100%;
+                    height: auto;
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                }
+                /* Style for the card body */
+                
+                .card-body {
+                    padding: 20px;
+                }
+                /* Style for the card title */
+                
+                .card-title {
+                    font-size: 1.25rem;
+                    margin-bottom: 10px;
+                }
+                /* Style for the card text */
+                
+                .card-text {
+                    font-size: 1rem;
+                    color: #555;
+                    margin-bottom: 20px;
+                }
+                /* Style for the card link/button */
+                
+                .btn-primary {
+                    color: #fff;
+                    background-color: #007bff;
+                    border-color: #007bff;
+                    border-radius: 5px;
+                    padding: 8px 16px;
+                    text-decoration: none;
+                    transition: background-color 0.3s;
+                }
+                
+                .btn-primary:hover {
+                    background-color: #0056b3;
+                }
+            </style>
+
+            <div class="col-lg-12">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+                <div class="container">
+                    <h1>Bienvenu cher utilisateur!</h1>
+                    <% if (salle) { %>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= salle.Nom %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= salle.Capacite %> PRS</p>
+                                <!-- Mettez à jour le lien href pour pointer vers la route "/ajouter-reserv" -->
+                                <a href="/ajouter-reserv" class="btn btn-primary">Réserver Salle</a>
+                            </div>
+                        </div>
+                        <% } else { %>
+                            <p>Aucune salle trouvée.</p>
+                            <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include ('layout/footer') %>
