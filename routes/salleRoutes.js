@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Salle = require('../models/salle');
 const authenticate = require('../middleware/auth');
+const Reserve = require('../models/reserve');
 
 router.get('/salles', authenticate, async(req, res) => {
     try {
@@ -201,6 +202,7 @@ router.delete('/supprimer/:id', authenticate, async(req, res) => {
 router.get('/', authenticate, (req, res) => {
     res.render('index');
 });
+
 router.get('/ajouter-salle', (req, res) => {
     res.render('ajouter-salle');
 });

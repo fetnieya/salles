@@ -1,23 +1,35 @@
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reservation</title>
+    <title>Réservation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Styles CSS pour le body et le header */
         
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f1f1f1;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        h4 {
+            font-size: 20px;
+            color: #7e073f;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+            font-style: italic;
+            text-shadow: 2px 2px 2px rgba(78, 29, 59, 0.1);
         }
         
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: white;
+            color: #f5a8d7;
             padding: 10px;
             display: flex;
             justify-content: space-between;
@@ -39,14 +51,20 @@
         }
         
         nav ul li a {
-            color: #fff;
+            color: #4b0331;
             text-decoration: none;
             display: flex;
             align-items: center;
+            transition: color 0.3s ease-in-out;
         }
         
         nav ul li a i {
             margin-right: 5px;
+        }
+        
+        nav ul li a:hover {
+            color: #d8a1bf;
+            /* Couleur jaune or pour le hover */
         }
         
         .container {
@@ -57,6 +75,7 @@
         
         h1 {
             margin-bottom: 20px;
+            color: #ac6496;
         }
     </style>
 </head>
@@ -65,12 +84,12 @@
     <!-- Header -->
     <header>
         <div>
-            <ih1>reservi.tn</ih1>
+            <h4>RéunionRive</h4>
         </div>
         <nav>
             <ul>
                 <li><a href="indexUser"><i class="fas fa-home"></i> Acceuil</a></li>
-                <li><a href="ajouter-reserv"><i class="fas fa-calendar-alt"></i>  Réserver</a></li>
+                <li><a href="ajouter-reserve"><i class="fas fa-calendar-alt"></i>  Réserver</a></li>
                 <li><a href="reserves"><i class="fas fa-door-open"></i> Mes réservation</a></li>
                 <li><a href="login"><i class="fas fa-sign-in-alt"></i> Déconexion</a></li>
             </ul>

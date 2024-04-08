@@ -58,12 +58,18 @@
                 <div class="container">
                     <h1>Bienvenu cher utilistaeur!</h1>
                     <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Sale A</h5>
-                            <p class="card-text">400 PRS</p>
-                            <!-- Mise à jour de l'attribut href pour pointer vers la route "/ajouter-reserv" -->
-                            <a href="/ajouter-reserv" class="btn btn-primary">Réserver Salle</a>
-                        </div>
+                        <% salles.forEach(function(salle) { %>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= salle.Nom %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= salle.Capacite %> PRS</p>
+                                <!-- Mise à jour de l'attribut href pour pointer vers la route "/ajouter-reserv" -->
+                                <a href="/ajouter-reserv/<%= salle.id %>" class="btn btn-primary">Réserver Salle</a>
+                            </div>
+                            <% }); %>
+
 
                     </div>
 

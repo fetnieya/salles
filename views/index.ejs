@@ -1,4 +1,4 @@
-<%- include ('layout/headerUser') %>
+<%- include ('layout/header') %>
 
     <div class="container">
         <div class="row">
@@ -55,27 +55,13 @@
                 }
             </style>
 
-            <div class="col-lg-12">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-                <div class="container">
-                    <h1>Bienvenu cher utilisateur!</h1>
-                    <% if (salle) { %>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%= salle.Nom %>
-                                </h5>
-                                <p class="card-text">
-                                    <%= salle.Capacite %> PRS</p>
-                                <!-- Mettez à jour le lien href pour pointer vers la route "/ajouter-reserv" -->
-                                <a href="/ajouter-reserv" class="btn btn-primary">Réserver Salle</a>
-                            </div>
-                        </div>
-                        <% } else { %>
-                            <p>Aucune salle trouvée.</p>
-                            <% } %>
-                </div>
-            </div>
+            <main>
+
+                <h1>Bienvenue dans l'interface d'administration</h1>
+                <p>C'est un plaisir de vous accueillir. Vous êtes connecté en tant qu'administrateur.</p>
+            </main>
+
+
         </div>
     </div>
 

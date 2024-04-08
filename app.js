@@ -16,6 +16,10 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const bcrypt = require('bcryptjs');
 const flash = require('connect-flash');
+const Salle = require("./models/salle");
+const Reserve = require("./models/reserve");
+const Utilisateur = require("./models/utilisateur");
+const nodemailer = require('nodemailer');
 
 
 const app = express();
@@ -66,11 +70,27 @@ app.get('/', (req, res) => {
 app.get('/index', authenticate, (req, res) => {
     res.render('index', { utilisateur: req.utilisateur._id });
 });
-
-app.get('/indexUser', (req, res) => {
+//SALLE NAME USER SECTION
+app.get('/indexUser', async(req, res) => {
     const utilisateur = jwt.decode(req.cookies);
-    res.render('indexUser', { utilisateur });
+    const salles = await Salle.find();
+    res.render('indexUser', { utilisateur, salles });
 });
+
+//liste users
+app.get('/listeU', async(req, res) => {
+    const utilisateur = await Utilisateur.find();
+    res.render('listeU', { users: utilisateur });
+});
+
+
+
+//LISTE RESERVE IN ADMIN SECTION
+app.get('/liste', authenticate, async(req, res) => {
+    const reserves = await Reserve.find();
+    res.render('liste', { reserves });
+});
+
 
 
 // Middleware pour les routes de gestion des salles
@@ -96,20 +116,6 @@ app.use("/", reservRoutes);
 app.use("/reservRoutes", reservRoutes);
 
 app.use('/admin', require('./routes/adminRoutes'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Lancement du serveur

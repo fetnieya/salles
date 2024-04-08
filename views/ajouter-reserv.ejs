@@ -69,7 +69,7 @@
             <form id="ajouter-reserv-form" action="/ajouter-reserv" method="POST">
 
                 <label for="Id">Nom salle:</label>
-                <input type="text" id="Id" name="Id" required>
+                <input type="text" id="Id" name="Id" required value="<%= salle.Nom %>" disabled>
 
                 <label for="Nom">Votre prenom:</label>
                 <input type="text" id="Nom" name="Nom" required>

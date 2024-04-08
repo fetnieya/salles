@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Reserve = require('../models/reserve');
 const authenticate = require('../middleware/auth');
+const Salle = require('../models/salle');
+
 
 // Ajouter une réservation dans la base de données
 router.post("/ajouter-reserv", async(req, res) => {
@@ -148,11 +150,12 @@ router.delete("/reserves/supprimer/:id", async(req, res) => {
 
 
 
-router.get('/indexUser', (req, res) => {
+router.get('/indexUser', async(req, res) => {
     res.render('indexUser'); // nzid objet fi liste mtaa salle
 });
-router.get('/ajouter-reserv', (req, res) => {
-    res.render('ajouter-reserv');
+router.get('/ajouter-reserv/:id', async(req, res) => {
+    const salle = await Salle.findOne({ _id: req.params.id });
+    res.render('ajouter-reserv', { salle });
 });
 
 router.get('/reserves', (req, res) => {

@@ -1,0 +1,86 @@
+<%- include ('layout/header') %>
+    <style>
+        /* Styles CSS */
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #e4dce0;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #ceacbd;
+            color: #fff;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e2e2e2;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .actions a {
+            margin-right: 10px;
+            color: #a17e8e;
+            transition: color 0.3s ease-in-out;
+            /* Transition pour le changement de couleur au survol */
+        }
+        
+        .actions a:hover {
+            color: #b30086;
+            /* Couleur au survol */
+        }
+    </style>
+
+    <body>
+        <h1>Liste des utilisateurs</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email de l' utilisateur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(utilisateur => { %>
+                    <tr>
+                        <td>
+                            <%= utilisateur.Email %>
+                        </td>
+                    </tr>
+                    <!-- Assuming username is a property of the User model -->
+                    <% }); %>
+            </tbody>
+        </table>
+    </body>
+
+
+    </html>
+    <%- include ('layout/footer') %>
