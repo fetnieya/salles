@@ -2,76 +2,128 @@
     <div class="container">
         <div class="row">
             <style>
-                /* Style for the card container */
+                /* Styles CSS */
                 
-                .card {
-                    width: 18rem;
-                    border: 1px solid #ccc;
-                    border-radius: 8px;
-                    margin-bottom: 20px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                }
-                /* Style for the card image */
-                
-                .card-img-top {
-                    width: 100%;
-                    height: auto;
-                    border-top-left-radius: 8px;
-                    border-top-right-radius: 8px;
-                }
-                /* Style for the card body */
-                
-                .card-body {
+                .container {
+                    max-width: 800px;
+                    margin: 20px auto;
                     padding: 20px;
-                }
-                /* Style for the card title */
-                
-                .card-title {
-                    font-size: 1.25rem;
-                    margin-bottom: 10px;
-                }
-                /* Style for the card text */
-                
-                .card-text {
-                    font-size: 1rem;
-                    color: #555;
-                    margin-bottom: 20px;
-                }
-                /* Style for the card link/button */
-                
-                .btn-primary {
-                    color: #fff;
-                    background-color: #007bff;
-                    border-color: #007bff;
+                    background-color: #fff;
                     border-radius: 5px;
-                    padding: 8px 16px;
-                    text-decoration: none;
-                    transition: background-color 0.3s;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 }
                 
-                .btn-primary:hover {
-                    background-color: #0056b3;
+                h1 {
+                    color: #333;
+                    text-align: center;
+                }
+                
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+                
+                th,
+                td {
+                    padding: 10px;
+                    border: 1px solid #e4dce0;
+                    text-align: center;
+                }
+                
+                th {
+                    background-color: #ceacbd;
+                    color: #fff;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+                
+                tr:hover {
+                    background-color: #e2e2e2;
+                }
+                
+                .actions {
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .actions a {
+                    margin-right: 10px;
+                    color: #a17e8e;
+                    transition: color 0.3s ease-in-out;
+                    /* Transition pour le changement de couleur au survol */
+                }
+                
+                .actions a:hover {
+                    color: #b30086;
+                    /* Couleur au survol */
                 }
             </style>
             <div class="" col-lg-12>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
                 <div class="container">
                     <h1>Bienvenu cher utilistaeur!</h1>
-                    <div class="card" style="width: 18rem;">
-                        <% salles.forEach(function(salle) { %>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%= salle.Nom %>
-                                </h5>
-                                <p class="card-text">
-                                    <%= salle.Capacite %> PRS</p>
-                                <!-- Mise à jour de l'attribut href pour pointer vers la route "/ajouter-reserv" -->
-                                <a href="/ajouter-reserv/<%= salle.id %>" class="btn btn-primary">Réserver Salle</a>
-                            </div>
-                            <% }); %>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Capacité</th>
+                                <th>Équipements</th>
+                                <th>Date de début</th>
+                                <th>Heure de début</th>
+                                <th>Date de fin</th>
+                                <th>Heure de fin</th>
+                                <th>Tarif</th>
+                                <th>Réserver</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% salles.forEach(function(salle) { %>
+                                <tr>
+                                    <td>
+                                        <%= salle.Nom %>
+                                    </td>
+                                    <td>
+                                        <%= salle.Capacite %>
+                                    </td>
+                                    <td>
+                                        <%= salle.Equipments %>
+                                    </td>
+                                    <% if (salle.Disponibilites && salle.Disponibilites.length > 0) { %>
+                                        <td>
+                                            <%= salle.Disponibilites[0].dateDebut ? salle.Disponibilites[0].dateDebut.toDateString() : '' %>
+                                        </td>
+                                        <td>
+                                            <%= salle.Disponibilites[0].heureDebut %>
+                                        </td>
+                                        <td>
+                                            <%= salle.Disponibilites[0].dateFin ? salle.Disponibilites[0].dateFin.toDateString() : '' %>
+                                        </td>
+                                        <td>
+                                            <%= salle.Disponibilites[0].heureFin %>
+                                        </td>
+                                        <% } else { %>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <% } %>
 
 
-                    </div>
+
+                                                <td>
+                                                    <%= salle.Tarif%>
+                                                </td>
+
+                                                <td><a href="/ajouter-reserv/<%= salle.id %>" class="btn btn-primary">Réserver Salle</a></td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
 
 
                 </div>

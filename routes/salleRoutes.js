@@ -4,23 +4,11 @@ const Salle = require('../models/salle');
 const authenticate = require('../middleware/auth');
 const Reserve = require('../models/reserve');
 
-router.get('/salles', authenticate, async(req, res) => {
-    try {
-        // Récupérer l'identifiant de l'administrateur connecté
-        const adminId = req.user._id; // Assurez-vous que votre middleware d'authentification place l'identifiant de l'utilisateur dans req.user
 
-        // Récupérer toutes les salles ajoutées par l'administrateur actuellement connecté depuis la base de données
-        const salles = await Salle.find({ addedBy: adminId });
-
-        res.render('salles', { salles }); // Passer les données des salles au template EJS
-    } catch (error) {
-        res.status(500).send('Erreur lors de la récupération des salles');
-    }
-});
 
 
 //post de  ajout salle
-router.post('/ajouter-salle', authenticate, async(req, res) => {
+router.post('/ajouter-salle', async(req, res) => {
     try {
 
         const {
@@ -91,7 +79,7 @@ router.post('/ajouter-salle', authenticate, async(req, res) => {
     }
 });
 //get pour afficher les salle
-router.get('/salles', authenticate, async(req, res) => {
+router.get('/salles', async(req, res) => {
     try {
         // Récupérer toutes les salles depuis la base de données
         const salles = await Salle.find();

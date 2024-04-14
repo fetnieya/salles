@@ -67,9 +67,9 @@
             <h1>Résserver une Salle</h1>
             <!-- Formulaire d'ajout de salle -->
             <form id="ajouter-reserv-form" action="/ajouter-reserv" method="POST">
-
-                <label for="Id">Nom salle:</label>
-                <input type="text" id="Id" name="Id" required value="<%= salle.Nom %>" disabled>
+                <input type="hidden" id="SalleName" name="SalleName" required value="<%= salle.Nom %>">
+                <label for="SalleName">Nom salle:</label>
+                <input type="text" id="SalleName" name="SalleName" required value="<%= salle.Nom %>" disabled>
 
                 <label for="Nom">Votre prenom:</label>
                 <input type="text" id="Nom" name="Nom" required>

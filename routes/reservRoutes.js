@@ -7,11 +7,21 @@ const Salle = require('../models/salle');
 
 // Ajouter une réservation dans la base de données
 router.post("/ajouter-reserv", async(req, res) => {
-    const { Id, Nom, Capacite, Equipments, Disponibilites, heure_debut, heure_fin, Tarif } = req.body;
-
+    console.log(req.body);
+    const { SalleName, Nom, Capacite, Equipments, Disponibilites, heure_debut, heure_fin, Tarif } = req.body;
+    console.log({
+        SalleName,
+        Nom,
+        Capacite,
+        Equipments,
+        Disponibilites,
+        heure_debut,
+        heure_fin,
+        Tarif,
+    });
     try {
         const nouvelleReserve = new Reserve({
-            Id,
+            SalleName,
             Nom,
             Capacite,
             Equipments,
@@ -151,7 +161,7 @@ router.delete("/reserves/supprimer/:id", async(req, res) => {
 
 
 router.get('/indexUser', async(req, res) => {
-    res.render('indexUser'); // nzid objet fi liste mtaa salle
+    res.render('indexUser');
 });
 router.get('/ajouter-reserv/:id', async(req, res) => {
     const salle = await Salle.findOne({ _id: req.params.id });
