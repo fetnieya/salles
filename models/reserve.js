@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const reserveSchema = new mongoose.Schema({
+    SalleName: { type: String, required: true },
     Nom: { type: String, required: true },
     Capacite: { type: String, required: true },
     Equipments: [{ type: String }],

@@ -3,11 +3,17 @@ const router = express.Router();
 const Reserve = require('../models/reserve');
 const authenticate = require('../middleware/auth');
 const Salle = require('../models/salle');
+const nodemailer = require('nodemailer');
 
 
 // Ajouter une réservation dans la base de données
 router.post("/ajouter-reserv", async(req, res) => {
+
+
     console.log(req.body);
+    console.log("____________________________________________");
+
+
     const { SalleName, Nom, Capacite, Equipments, Disponibilites, heure_debut, heure_fin, Tarif } = req.body;
     console.log({
         SalleName,
@@ -30,11 +36,35 @@ router.post("/ajouter-reserv", async(req, res) => {
             heure_fin,
             Tarif,
         });
+        console.log("_____________________________________", nouvelleReserve)
         await nouvelleReserve.save();
         req.session.message = {
             type: 'success',
             message: 'Ajout avec succès'
         };
+
+        const transporter = nodemailer.createTransport({
+            port: 465, // true for 465, false for other ports
+            host: "smtp.gmail.com",
+            auth: {
+                user: 'fetnieya4@gmail.com',
+                pass: 'wwjazolctgccvsel',
+            },
+            secure: true,
+        });
+        const mailData = {
+            from: 'youremail@gmail.com', // sender address
+            to: 'yassine.zenned.123@gmail.com', // list of receivers
+            subject: 'Sending Email using Node.js',
+            text: 'That was easy!',
+            html: "<b>Hey there! </b><br> reservation succfully<br/>",
+        };
+        transporter.sendMail(mailData, (err, info) => {
+            if (err) {
+                return console.log(err);
+            }
+
+        });
         res.redirect('/reserves');
     } catch (error) {
         res.json({ message: error.message, type: 'danger' });
@@ -163,9 +193,15 @@ router.delete("/reserves/supprimer/:id", async(req, res) => {
 router.get('/indexUser', async(req, res) => {
     res.render('indexUser');
 });
+
 router.get('/ajouter-reserv/:id', async(req, res) => {
     const salle = await Salle.findOne({ _id: req.params.id });
-    res.render('ajouter-reserv', { salle });
+    const SalleName = {
+        title: salle.Nom,
+    };
+
+
+    res.render('ajouter-reserv', { salle, SalleName });
 });
 
 router.get('/reserves', (req, res) => {

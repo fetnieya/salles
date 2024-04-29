@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const salleSchema = new Schema({
-    NomS: { type: String, required: true },
+
     Nom: { type: String, required: true },
     Capacite: { type: Number, required: true },
     Equipments: [{ type: String }],

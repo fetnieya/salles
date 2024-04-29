@@ -76,6 +76,7 @@ router.post('/ajouter-salle', async(req, res) => {
 
     } catch (error) {
         res.status(400).send('Erreur lors de l\'ajout de la salle');
+        console.log(error);
     }
 });
 //get pour afficher les salle
@@ -187,7 +188,7 @@ router.delete('/supprimer/:id', authenticate, async(req, res) => {
 
 
 
-router.get('/', authenticate, (req, res) => {
+router.get('/', (req, res) => {
     res.render('index');
 });
 
