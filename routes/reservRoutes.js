@@ -54,7 +54,7 @@ router.post("/ajouter-reserv", async(req, res) => {
         });
         const mailData = {
             from: 'youremail@gmail.com', // sender address
-            to: 'yassine.zenned.123@gmail.com', // list of receivers
+            to: 'widedkhadhraoui2000@gmail.com', // list of receivers
             subject: 'Sending Email using Node.js',
             text: 'That was easy!',
             html: "<b>Hey there! </b><br> reservation succfully<br/>",
